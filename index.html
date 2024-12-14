@@ -1,0 +1,119 @@
+<html></html>
+<head>
+    <title>Trending Video</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        .video-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+        .video-item {
+            scroll-snap-align: start;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <div class="flex flex-col items-center justify-center min-h-screen">
+        <!-- Header -->
+        <div class="flex justify-between items-center w-full px-4 py-2 bg-black text-white">
+            <div class="flex space-x-4">
+                <span>Snack Village</span>
+                <span>Live</span>
+                <span>Following</span>
+                <span class="text-red-500">Trending</span>
+            </div>
+            <div>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <!-- Video Section -->
+        <div class="video-container w-full max-w-md" id="videoContainer">
+            <div class="video-item relative w-full">
+                <video class="w-full h-screen object-cover" >
+                    <source src="./asset/surah al fatihah.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="absolute top-4 left-4 text-center w-full">
+                    <h1 class="text-xl font-bold">KEJUTAN DI DALAM KEGELAPAN</h1>
+                </div>
+                <div class="absolute bottom-4 left-4 text-center w-full">
+                    <p class="text-lg">it</p>
+                </div>
+            </div>
+            <div class="video-item relative w-full">
+                <video class="w-full h-screen object-cover" >
+                    <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="absolute top-4 left-4 text-center w-full">
+                    <h1 class="text-xl font-bold">VIDEO 2</h1>
+                </div>
+                <div class="absolute bottom-4 left-4 text-center w-full">
+                    <p class="text-lg">Description for video 2</p>
+                </div>
+            </div>
+            <div class="video-item relative w-full">
+                <video class="w-full h-screen object-cover" >
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="absolute top-4 left-4 text-center w-full">
+                    <h1 class="text-xl font-bold">VIDEO 3</h1>
+                </div>
+                <div class="absolute bottom-4 left-4 text-center w-full">
+                    <p class="text-lg">Description for video 3</p>
+                </div>
+            </div>
+        </div>
+        <!-- Interaction Buttons -->
+        <div class="absolute right-4 top-1/4 flex flex-col items-center space-y-4">
+            <button class="bg-orange-500 text-white rounded-full p-2">
+                <i class="fas fa-plus"></i>
+            </button>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-heart text-2xl"></i>
+                <span>631</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-comment text-2xl"></i>
+                <span>1</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-share text-2xl"></i>
+                <span>Share</span>
+            </div>
+        </div>
+        <!-- Footer -->
+        <div class="flex justify-between items-center w-full px-4 py-2 bg-black text-white fixed bottom-0">
+            <i class="fas fa-home text-2xl"></i>
+            <i class="fas fa-search text-2xl"></i>
+            <i class="fas fa-plus-circle text-2xl"></i>
+            <i class="fas fa-inbox text-2xl"></i>
+            <i class="fas fa-user text-2xl"></i>
+        </div>
+    </div>
+    <script>
+        const videoContainer = document.getElementById('videoContainer');
+        const videos = videoContainer.getElementsByTagName('video');
+
+        function checkAndPlayVideos() {
+            for (let video of videos) {
+                const rect = video.getBoundingClientRect();
+                if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                    video.play();
+                } else {
+                    video.pause();
+                }
+            }
+        }
+
+        videoContainer.addEventListener('scroll', checkAndPlayVideos);
+
+        // Initial check to play the first video
+        window.addEventListener('load', checkAndPlayVideos);
+    </script>
+</body>
+</html>
